@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frame Foundry · 文生图工作台</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <main class="studio-shell">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark">FF</span><span>FRAME FOUNDRY</span></div>
+        <div class="top-meta"><span class="status-dot"></span><span>LOCAL STUDIO</span><span id="asset-count">读取资产中</span></div>
+      </header>
+
+      <section class="intro">
+        <div>
+          <p class="eyebrow">GPT-IMAGE-2 / ASSET LIBRARY</p>
+          <h1>从场景到<br /><em>一帧成片</em></h1>
+        </div>
+        <p class="intro-copy">选择已有资产，查看完整连续性提示词，再生成一张可进入素材工作流的画面。</p>
+      </section>
+
+      <section class="workspace">
+        <aside class="asset-panel" aria-label="素材资产">
+          <div class="panel-heading"><span>资产索引</span><span id="asset-total" class="count-pill">—</span></div>
+          <div class="filter-row" role="tablist" aria-label="资产类别">
+            <button class="filter active" data-type="全部">全部</button>
+            <button class="filter" data-type="场景">场景</button>
+            <button class="filter" data-type="角色">角色</button>
+            <button class="filter" data-type="道具">道具</button>
+          </div>
+          <label class="search"><span>⌕</span><input id="asset-search" placeholder="查找场景、角色或道具" /></label>
+          <div id="asset-list" class="asset-list" aria-live="polite"></div>
+        </aside>
+
+        <section class="editor-panel" aria-label="生成编辑器">
+          <div class="editor-heading">
+            <div><p class="eyebrow" id="selected-type">选择资产</p><h2 id="selected-name">正在载入素材库</h2></div>
+            <div id="output-folder" class="output-folder">目标目录 · —</div>
+          </div>
+
+          <div class="context-grid">
+            <article><p class="context-label">整体场景 / 连续性</p><div id="definition" class="markdown-copy empty">选择左侧资产后显示它的资产定义。</div></article>
+            <article><p class="context-label">画面任务</p><div id="brief" class="markdown-copy empty">—</div></article>
+          </div>
+
+          <div class="prompt-header"><span>完整提示词</span><button id="restore-prompt" class="text-button" type="button">还原模板</button></div>
+          <textarea id="prompt" aria-label="完整提示词" spellcheck="false" placeholder="选择素材后加载提示词…"></textarea>
+          <p class="prompt-hint">提示：在模板基础上补充单一画面任务，例如“中景，浩宇靠在地铁门边，视线看向前方”。</p>
+
+          <div class="controls">
+            <label><span>画幅</span><select id="size"><option value="1024x1024">1:1 · 1024 × 1024</option><option value="1024x1536" selected>2:3 · 1024 × 1536</option><option value="1536x1024">3:2 · 1536 × 1024</option></select></label>
+            <label><span>质量</span><select id="quality"><option value="low" selected>低 · 快速预览</option><option value="medium">中 · 常规</option><option value="high">高 · 精细</option></select></label>
+            <label><span>数量</span><select id="image-count"><option value="1" selected>1 张</option><option value="2">2 张</option><option value="3">3 张</option><option value="4">4 张</option></select></label>
+            <button id="generate" class="generate-button" type="button"><span>✦</span> 生成画面</button>
+          </div>
+          <div id="notice" class="notice" role="status"></div>
+        </section>
+
+        <aside class="result-panel" aria-label="生成结果">
+          <div class="panel-heading"><span>最近生成</span><span class="live">LIVE</span></div>
+          <div id="task-info" class="task-info" style="margin-top:14px;padding:8px 9px;background:#222524;color:#d5ff3f;font:10px/1.4 monospace;word-break:break-all">任务号 · 等待提交</div>
+          <div id="result-stage" class="result-stage"><div class="empty-state"><span>✦</span><p>生成的图片将在这里出现</p><small>同时会自动归档到所选资产目录</small></div></div>
+          <div id="save-note" class="save-note">等待生成任务</div>
+        </aside>
+      </section>
+    </main>
+    <template id="asset-template"><button class="asset-card" type="button"><span class="asset-symbol"></span><span class="asset-name"></span><span class="asset-id"></span><span class="asset-made"></span></button></template>
+    <script src="app.js"></script>
+  </body>
+</html>

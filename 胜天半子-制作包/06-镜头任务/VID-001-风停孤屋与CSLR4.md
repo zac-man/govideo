@@ -4,6 +4,11 @@
 - 选择主体：`@狸同伟`。
 - 普通参考图：`@木屋外景`、`@木屋内景`、`@CSLR4`。
 
+## 素材需求（已生成）
+
+- 建立主体 `@狸同伟`：`IMG-001-lihua-A.png`、`IMG-001-lihua-B.png`。
+- 上传普通参考图：`IMG-007-cabin-ext.png`（`@木屋外景`）、`IMG-008-cabin-int.png`（`@木屋内景`）、`IMG-015-cs-lr4.png`（`@CSLR4`）。
+
 ## 完整 Omni 提示词
 
 ```text
